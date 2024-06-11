@@ -23,14 +23,14 @@ export const createProduct = async (product: Omit<Product, 'id'>): Promise<Produ
 };
 
 const uploadInstance = axios.create({
-  baseURL: 'https://fakeapi.platzi.com/en/rest/files', // Базовый URL для загрузки изображений
+  baseURL: 'https://api.escuelajs.co/api/v1', // Базовый URL для загрузки изображений
 });
 
-export const uploadFile = async (file: File): Promise<{ url: string }> => {
+export const uploadFile = async (file: File): Promise<{ location: string }> => {
   const formData = new FormData();
   formData.append('file', file);
 
-  const response = await uploadInstance.post('/upload-file', formData, {
+  const response = await uploadInstance.post('/files/upload', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
